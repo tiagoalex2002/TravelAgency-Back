@@ -1,7 +1,7 @@
 import { Router } from "express"
-import citiesRouter from "./cities.routes"
-import hotelsRouter from "./hotels.routes"
-import flightRouter from "./flights.routes"
+import citiesRouter from "./cities.routes.js"
+import hotelsRouter from "./hotels.routes.js"
+import flightRouter from "./flights.routes.js"
 
 const router = Router()
 router.use(citiesRouter)

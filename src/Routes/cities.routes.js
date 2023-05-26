@@ -7,4 +7,4 @@ const citiesRouter= Router()
 
 citiesRouter.get("/cities", getCities)
 
-export default citiesRouter
+export default citiesRouter;
