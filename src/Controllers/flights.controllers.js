@@ -26,7 +26,7 @@ export async function getFlightDetail(req,res){
     let flight = parseInt(req.params.id)
     try{
         let inf = await db.query(`SELECT * FROM flights WHERE id=$1`, [flight])
-        return res.status(201).send(inf.rows)
+        return res.status(201).send(inf.rows[0])
     } catch(err){
         console.log(err.message)
     }
