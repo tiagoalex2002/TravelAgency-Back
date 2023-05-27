@@ -4,6 +4,6 @@ import { getFlights, getFlightDetail} from "../Controllers/flights.controllers.j
 const flightRouter= Router()
 
 flightRouter.get("/flights/:cityId", getFlights)
-flightRouter.get("/flights/:id", getFlightDetail)
+flightRouter.get("/flight/:id", getFlightDetail)
 
 export default flightRouter;
