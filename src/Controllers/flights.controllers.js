@@ -1,19 +1,20 @@
 import { db } from "../Database/database.connection.js"
 
 export async function getFlights(req,res){
-    let {city} = req.params
+    let cityId = parseInt(req.params.cityId)
     const min = parseInt(req.query.min)
     const max= parseInt(req.query.max)
     let expo=[]
     try{
-        let flights = await db.query(`SELECT * FROM flights WHERE city = $1`, [city])
+        let city= await db.query (`SELECT * FROM cities WHERE id=$1 `,[cityId])
+        let flights = await db.query(`SELECT * FROM flights WHERE origin= $1`, [city.rows[0].name])
         for(let i=0; i < flights.rows.length; i++){
             let item=flights.rows[i].price 
             if( item>= min && item <= max){
                 expo.push(item)
             }
         }
-        return res.status(201).send(expo)
+        return res.status(201).send(flights)
     } catch(err){
         console.log(err.message)
     }
