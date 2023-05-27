@@ -15,7 +15,7 @@ export async function getFlights(req,res){
                 expo.push(item)
             }
         }
-        return res.status(201).send(flights)
+        return res.status(201).send(flights.rows)
     } catch(err){
         console.log(err.message)
     }
