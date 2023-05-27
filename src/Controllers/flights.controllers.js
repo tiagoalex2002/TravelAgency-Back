@@ -7,6 +7,7 @@ export async function getFlights(req,res){
     let expo=[]
     try{
         let city= await db.query (`SELECT * FROM cities WHERE id=$1 `,[cityId])
+        console.log(city)
         let flights = await db.query(`SELECT * FROM flights WHERE origin= $1`, [city.rows[0].name])
         for(let i=0; i < flights.rows.length; i++){
             let item=flights.rows[i].price 
