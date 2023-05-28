@@ -4,6 +4,6 @@ import { getHotels,getHotelDetail } from "../Controllers/hotels.controllers.js";
 const hotelsRouter= Router()
 
 hotelsRouter.get("/hotels/:cityId",getHotels)
-hotelsRouter.get("/hotels/:id", getHotelDetail)
+hotelsRouter.get("/hotel/:id", getHotelDetail)
 
 export default hotelsRouter;
