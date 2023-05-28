@@ -14,15 +14,12 @@ export async function getHotels (req, res){
 }
 export async function getHotelDetail(req,res){
     let hotel = parseInt(req.params.id)
-    let info=[]
+
     try{
-        let characteristics = await db.query(`SELECT hotels.characteristics FROM hotels WHERE id=$1`,[hotel])
-        let commodities = await db.query(`SELECT hotels.commodities FROM hotels WHERE id= $1`,[hotel])
-        let name = await db.query(`SELECT hotels.name FROM hotels WHERE id=$1`,[hotel])
-        info.push(characteristics)
-        info.push(commodities)
-        info.push(name)
-        return res.status(201).send(info)
+        let info = await db.query(`SELECT * FROM hotels WHERE id=$1`,[hotel])
+        let city= await db.query(`SELECT cities.id FROM cities WHERE name=$1`,[info.rows[0].city])
+        info.rows.push(city)
+        return res.status(201).send(info.rows)
     } catch(err){
         console.log(err.message)
     }
