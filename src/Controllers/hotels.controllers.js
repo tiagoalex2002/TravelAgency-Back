@@ -5,6 +5,7 @@ export async function getHotels (req, res){
     try{
         let city= await db.query (`SELECT * FROM cities WHERE id=$1 `,[cityId])
         let hotels= await db.query(`SELECT * FROM hotels WHERE city= $1`,[city.rows[0].name])
+        console.log(hotels.rows)
         return res.status(201).send(hotels.rows)
     } catch(err){
         console.log(err.message)
