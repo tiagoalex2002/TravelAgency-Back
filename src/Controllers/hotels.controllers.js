@@ -1,7 +1,7 @@
 import { db } from "../Database/database.connection.js"
 
 export async function getHotels (req, res){
-    let cityId= rparseInt(req.params.id)
+    let cityId= parseInt(req.params.id)
     try{
         let city= await db.query (`SELECT * FROM cities WHERE id=$1 `,[cityId])
         let hotels= await db.query(`SELECT * FROM hotels WHERE city= $1`,[city.rows[0].name])
