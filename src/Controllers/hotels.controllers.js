@@ -18,8 +18,10 @@ export async function getHotelDetail(req,res){
     try{
         let characteristics = await db.query(`SELECT hotels.characteristics FROM hotels WHERE id=$1`,[hotel])
         let commodities = await db.query(`SELECT hotels.commodities FROM hotels WHERE id= $1`,[hotel])
+        let name = await db.query(`SELECT hotels.name FROM hotels WHERE id=$1`,[hotel])
         info.push(characteristics)
         info.push(commodities)
+        info.push(name)
         return res.status(201).send(info)
     } catch(err){
         console.log(err.message)
