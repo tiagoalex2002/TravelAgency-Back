@@ -7,7 +7,7 @@ export async function getFlights(req,res){
         city=  await db.query('SELECT * FROM cities WHERE id=$1', [cityId]);
         console.log(city)
         let flights = await db.query(`SELECT * FROM flights WHERE destiny= $1`, [city.rows[0].name])
-        return res.status(201).send(flights.rows)
+        return res.status(201).send(flights.rows) 
     } catch(err){
         console.log(err.message)
     }
