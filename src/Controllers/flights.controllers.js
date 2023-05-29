@@ -18,7 +18,7 @@ export async function getFlightDetail(req,res){
     let flight = parseInt(req.params.id)
     try{
         let inf = await db.query(`SELECT * FROM flights WHERE id=$1`, [flight])
-        let city= db.query(`SELECT cities.id FROM cities WHERE name=$1`,[inf.rows[0].destiny])
+        let city= await db.query(`SELECT cities.id FROM cities WHERE name=$1`,[inf.rows[0].destiny])
         inf.rows.push(city)
         return res.status(201).send(inf.rows)
     } catch(err){
