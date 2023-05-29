@@ -4,7 +4,7 @@ import { getCityRepository, getCityByName } from "../Repositories/getCityReposit
 export async function getFlights(req,res){
     let cityId = parseInt(req.params.cityId)
     try{
-        city=  await db.query('SELECT * FROM cities WHERE id=$1', [cityId]);
+        let city=  await db.query('SELECT * FROM cities WHERE id=$1', [cityId]);
         console.log(city)
         let flights = await db.query(`SELECT * FROM flights WHERE destiny= $1`, [city.rows[0].name])
         return res.status(201).send(flights.rows) 
