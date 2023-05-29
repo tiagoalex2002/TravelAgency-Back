@@ -7,3 +7,7 @@ export async function getCityRepository (id) {
 export async function getCityByName (name){
     return db.query(`SELECT cities.id FROM cities WHERE name=$1`,[name])
 }
+
+export async function postCityRepository(name){
+    return db.query(`INSERT INTO cities (name) VALUES ($1) ;`,[name])
+}

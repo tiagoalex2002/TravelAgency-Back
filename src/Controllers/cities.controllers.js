@@ -1,4 +1,5 @@
 import { db } from "../Database/database.connection.js"
+import { getCityRepository, postCityRepository } from "../Repositories/getCityRepository.js"
 
 export async function getCities (req, res ){
     try{
@@ -11,4 +12,15 @@ export async function getCities (req, res ){
     } catch(err){
         console.log(err.message)
     }
+}
+
+export async function postCities(req,res){
+    let {name} = req.body
+    try{
+        await postCityRepository(name)
+        return res.sendStatus(201)
+    } catch(err){
+        console.log(err.message)
+    }
+    
 }
